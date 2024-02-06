@@ -2,7 +2,8 @@ import mongoose, { Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt"
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+    {
     username: {
         type: String,
         required: true,
@@ -31,10 +32,12 @@ const userSchema = new Schema({
     coverImage: {
         type: String,  // cloudinary url
     },
-    watchHistory: {
-        type: Schema.Types.ObjectId,
-        ref: "Video"
-    },
+    watchHistory: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Video"
+        }
+    ],
     password: {
         type: String,
         required: [true, 'Password is required']
@@ -45,7 +48,8 @@ const userSchema = new Schema({
 },
     {
         timestamps: true
-    })
+    }
+)
 
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next()
