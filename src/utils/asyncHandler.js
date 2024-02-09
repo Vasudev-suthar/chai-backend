@@ -9,7 +9,7 @@ export {asyncHandler}
 
 // const asyncHandler = () => {}
 // const asyncHandler = (function) => () =>  {}
-// const asyncHandler = (function) => async () => {}
+// const asyncHandler = (function) => async () => {}   ---------- This is called higher function
 
 // const asyncHandler = (fn) => async (req, res , next) => {
 //     try {

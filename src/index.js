@@ -28,6 +28,8 @@ connectDB()
 import express from "express"
 const app = express()
 
+This is a ifi function -- create a function and exicute imideteli  ;(() => {})()  --; sure that this is a new line
+
 ;( async() => {
     try {
         await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
