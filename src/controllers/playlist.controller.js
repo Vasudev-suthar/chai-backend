@@ -3,6 +3,7 @@ import {Playlist} from "../models/playlist.model.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import {asyncHandler} from "../utils/asyncHandler.js"
+import {Video} from "../models/video.model.js"
 
 
 const createPlaylist = asyncHandler(async (req, res) => {
@@ -286,7 +287,7 @@ const deletePlaylist = asyncHandler(async (req, res) => {
         throw new ApiError(400, "only owner can delete the playlist");
     }
 
-    await Playlist.findByIdAndDelete(playlist?._id);
+    const updatedPlaylist = await Playlist.findByIdAndDelete(playlist?._id);
 
     return res
         .status(200)
@@ -294,7 +295,7 @@ const deletePlaylist = asyncHandler(async (req, res) => {
             new ApiResponse(
                 200,
                 updatedPlaylist,
-                "playlist updated successfully"
+                "playlist deleted successfully"
             )
         );
 })
